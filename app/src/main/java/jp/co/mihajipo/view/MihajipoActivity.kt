@@ -1,12 +1,19 @@
 package jp.co.mihajipo.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import jp.co.mihajipo.R
+import androidx.appcompat.app.AppCompatActivity
+import jp.co.mihajipo.databinding.ActivityMihajipoBinding
 
+/**
+ * mihajipoのメインクラス
+ */
 class MihajipoActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMihajipoBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mihajipo)
+        binding = ActivityMihajipoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
