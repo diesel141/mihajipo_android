@@ -1,13 +1,14 @@
 package jp.co.mihajipo.model
 
+import jp.co.mihajipo.utility.TimerUtility
+
 /**
  * MihajipoのModel
  */
 class MihajipoModel : MIhajipoContract.Model {
 
     override fun getTimes(): String {
-        // TODO Utilityから経過時間を取得
-        return ""
+        return TimerUtility.getSeconds()
     }
 
     override fun getSteps(): String {
