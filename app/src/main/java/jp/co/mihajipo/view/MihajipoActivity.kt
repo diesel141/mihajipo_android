@@ -17,28 +17,53 @@ class MihajipoActivity : AppCompatActivity(), MIhajipoContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMihajipoBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
         setContentView(binding.root)
 
-        presenter = MihajipoPresenter(this)
+        presenter = MihajipoPresenter(this).also {
+            it.getJobStatus().observe(this@MihajipoActivity, { status ->
+                binding.status = status
+            })
+        }
+
     }
 
     override fun initView() {
-        // TODO 開始・一時停止・停止ボタンの切り替えとか制御とか
+        binding.start.setOnClickListener {
+            presenter?.start()
+        }
+        binding.pause.setOnClickListener {
+            presenter?.pause()
+        }
+        binding.restart.setOnClickListener {
+            presenter?.restart()
+        }
+        binding.stop.setOnClickListener {
+            presenter?.stop()
+        }
     }
 
     override fun updateTimer(time: String) {
-        binding.times.text = time
+        runOnUiThread {
+            binding.times.text = time
+        }
     }
 
     override fun updateSteps(steps: String) {
-        binding.steps.text = steps
+        runOnUiThread {
+            binding.steps.text = steps
+        }
     }
 
     override fun updateSpeed(speed: String) {
-        binding.speed.text = speed
+        runOnUiThread {
+            binding.speed.text = speed
+        }
     }
 
     override fun updateDistance(distance: String) {
-        binding.distance.text = distance
+        runOnUiThread {
+            binding.distance.text = distance
+        }
     }
 }

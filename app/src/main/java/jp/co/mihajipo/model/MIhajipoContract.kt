@@ -1,5 +1,7 @@
 package jp.co.mihajipo.model
 
+import androidx.lifecycle.MutableLiveData
+import jp.co.mihajipo.model.MihajipoModel.StatusType
 import org.jetbrains.annotations.NotNull
 
 interface MIhajipoContract {
@@ -37,6 +39,19 @@ interface MIhajipoContract {
     }
 
     interface Presenter {
+
+        /** 開始 */
+        fun start()
+
+        /** 一時停止 */
+        fun pause()
+
+        /** 再開 */
+        fun restart()
+
+        /** 停止 */
+        fun stop()
+
         /** 1秒更新処理 */
         fun updatePerSecond()
 
@@ -48,6 +63,19 @@ interface MIhajipoContract {
     }
 
     interface Model {
+
+        /**
+         * ステータス管理クラスを返却
+         * @return ステータス管理クラス
+         */
+        fun getJobStatus(): MutableLiveData<StatusType>
+
+        /**
+         * ステータスを更新
+         * @param status ステータス
+         */
+        fun updateStatus(status: StatusType)
+
         /**
          * 時間を返却
          * @return 時間
