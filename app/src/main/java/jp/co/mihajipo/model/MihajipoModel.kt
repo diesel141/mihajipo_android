@@ -5,37 +5,66 @@ import androidx.lifecycle.MutableLiveData
 /**
  * MihajipoのModel
  */
-class MihajipoModel : MIhajipoContract.Model {
+class MihajipoModel {
 
-    /** ステータス管理 */
-    private var jobStatus: MutableLiveData<StatusType> = MutableLiveData(StatusType.STOPPED)
+    /**
+     * ステータスLiveData
+     */
+    fun getJobStatus(): MutableLiveData<StatusType> = jobStatus
 
-    override fun getJobStatus(): MutableLiveData<StatusType> {
-        return jobStatus
+    /**
+     * ステータスを更新
+     */
+    fun updateStatus(_jobStatus: StatusType) {
+        jobStatus.postValue(_jobStatus)
     }
 
-    override fun updateStatus(status: StatusType) {
-        jobStatus.postValue(status)
+    /**
+     * 経過時間LiveData
+     */
+    fun getTimes(): MutableLiveData<String> = times
+
+    /**
+     * 経過時間を更新
+     */
+    fun updateTimer() {
+        // times.postValue(TimerUtility.getTime()) TODO
     }
 
-    override fun getTimes(): String {
-        // TODO Utilityから経過時間を取得
-        return ""
+    /**
+     * 歩数LiveData
+     */
+    fun getSteps(): MutableLiveData<String> = steps
+
+    /**
+     * 歩数を更新
+     */
+    fun updateSteps() {
+        // steps.postValue(PedometerUtility.getSteps()) TODO
     }
 
-    override fun getSteps(): String {
-        // TODO Utilityから歩数を取得
-        return ""
+    /**
+     * 時速LiveData
+     */
+    fun getSpeed(): MutableLiveData<String> = speed
+
+    /**
+     * 時速を更新
+     */
+    fun updateSpeed() {
+        // speed.postValue(SpeedUtility.getSpeed()) TODO
     }
 
-    override fun getSpeed(): String {
-        // TODO Utilityから時速を取得
-        return ""
-    }
+    /**
+     * 距離LiveData
+     */
+    fun getDistance(): MutableLiveData<String> = distance
 
-    override fun getDistance(): String {
-        // TODO Utilityから距離を取得
-        return ""
+    /**
+     * 距離を更新
+     */
+    fun updateDistance() {
+        // times.postValue(DistanceUtility.getDistance()) TODO
     }
 
     /**
@@ -52,4 +81,19 @@ class MihajipoModel : MIhajipoContract.Model {
         /** 一時停止 */
         PAUSED
     }
+
+    /** ステータス管理 */
+    private var jobStatus: MutableLiveData<StatusType> = MutableLiveData(StatusType.STOPPED)
+
+    /** 経過時間 */
+    private var times: MutableLiveData<String> = MutableLiveData()
+
+    /** 経過時間 */
+    private var steps: MutableLiveData<String> = MutableLiveData()
+
+    /** 経過時間 */
+    private var speed: MutableLiveData<String> = MutableLiveData()
+
+    /** 経過時間 */
+    private var distance: MutableLiveData<String> = MutableLiveData()
 }

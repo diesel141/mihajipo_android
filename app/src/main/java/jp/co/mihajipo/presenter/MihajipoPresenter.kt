@@ -11,7 +11,7 @@ import jp.co.mihajipo.model.MihajipoModel.StatusType
 open class MihajipoPresenter(_view: MIhajipoContract.View) : MIhajipoContract.Presenter {
 
     private var view: MIhajipoContract.View = _view
-    private var model: MIhajipoContract.Model = MihajipoModel()
+    private var model: MihajipoModel = MihajipoModel()
 
     init {
         view.initView()
@@ -34,17 +34,17 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) : MIhajipoContract.Pr
     }
 
     override fun updatePerSecond() {
-        view.updateTimer(model.getTimes())
+        model.updateTimer()
     }
 
     override fun updatePerThirtySecond() {
-        view.updateTimer(model.getTimes())
-        view.updateSpeed(model.getSpeed())
-        view.updateDistance(model.getDistance())
+        model.updateTimer()
+        model.updateSpeed()
+        model.updateDistance()
     }
 
     override fun updateForNeed() {
-        view.updateSteps(model.getSteps())
+        model.updateSteps()
     }
 
     /**
@@ -52,4 +52,28 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) : MIhajipoContract.Pr
      * @return ステータス
      */
     fun getJobStatus() = model.getJobStatus()
+
+    /**
+     * 経過時間を返却
+     * @return 経過時間
+     */
+    fun getTimes() = model.getTimes()
+
+    /**
+     * 歩数を返却
+     * @return 歩数
+     */
+    fun getSteps() = model.getSteps()
+
+    /**
+     * 時速を返却
+     * @return 時速
+     */
+    fun getSpeed() = model.getSpeed()
+
+    /**
+     * 距離を返却
+     * @return 距離
+     */
+    fun getDistance() = model.getDistance()
 }
