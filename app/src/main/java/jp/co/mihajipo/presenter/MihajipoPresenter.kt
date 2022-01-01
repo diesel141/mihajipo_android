@@ -1,15 +1,19 @@
 package jp.co.mihajipo.presenter
 
+import android.hardware.SensorManager
 import jp.co.mihajipo.model.MIhajipoContract
 import jp.co.mihajipo.model.MihajipoModel
 import jp.co.mihajipo.model.MihajipoModel.StatusType
+import jp.co.mihajipo.utility.PedometerDynamicUtility
 
 /**
  * MIhajipoのPresenter
  * @param _view View
  */
-open class MihajipoPresenter(_view: MIhajipoContract.View) : MIhajipoContract.Presenter {
+open class MihajipoPresenter(_view: MIhajipoContract.View) :
+    MIhajipoContract.Presenter {
 
+    lateinit var sensorManager: SensorManager
     private var view: MIhajipoContract.View = _view
     private var model: MihajipoModel = MihajipoModel()
 
@@ -19,18 +23,22 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) : MIhajipoContract.Pr
 
     override fun start() {
         model.updateStatus(StatusType.DOING)
+        PedometerDynamicUtility.start(presenter = this)
     }
 
     override fun pause() {
         model.updateStatus(StatusType.PAUSED)
+        PedometerDynamicUtility.stop()
     }
 
     override fun restart() {
         model.updateStatus(StatusType.DOING)
+        PedometerDynamicUtility.reStart(presenter = this)
     }
 
     override fun stop() {
         model.updateStatus(StatusType.STOPPED)
+        PedometerDynamicUtility.cancel()
     }
 
     override fun updatePerSecond() {

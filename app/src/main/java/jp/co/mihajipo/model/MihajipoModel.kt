@@ -1,6 +1,7 @@
 package jp.co.mihajipo.model
 
 import androidx.lifecycle.MutableLiveData
+import jp.co.mihajipo.utility.PedometerDynamicUtility
 
 /**
  * MihajipoのModel
@@ -40,7 +41,7 @@ class MihajipoModel {
      * 歩数を更新
      */
     fun updateSteps() {
-        // steps.postValue(PedometerUtility.getSteps()) TODO
+        steps.postValue(PedometerDynamicUtility.getSteps())
     }
 
     /**

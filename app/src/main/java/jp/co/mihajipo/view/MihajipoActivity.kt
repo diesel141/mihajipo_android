@@ -1,5 +1,7 @@
 package jp.co.mihajipo.view
 
+import android.content.Context
+import android.hardware.SensorManager
 import jp.co.mihajipo.databinding.ActivityMihajipoBinding
 import jp.co.mihajipo.model.MIhajipoContract
 import jp.co.mihajipo.presenter.MihajipoPresenter
@@ -21,6 +23,8 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
 
     override fun initPresenter() {
         presenter = MihajipoPresenter(this).apply {
+            sensorManager =
+                applicationContext.getSystemService(Context.SENSOR_SERVICE) as SensorManager
             initObserver()
         }
     }
