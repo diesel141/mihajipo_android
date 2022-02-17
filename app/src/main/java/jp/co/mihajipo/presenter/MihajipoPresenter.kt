@@ -24,21 +24,25 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
     override fun start() {
         model.updateStatus(StatusType.DOING)
         PedometerDynamicUtility.start(presenter = this)
+        TimerUtility.startTimer(presenter = this)
     }
 
     override fun pause() {
         model.updateStatus(StatusType.PAUSED)
         PedometerDynamicUtility.stop()
+        TimerUtility.stopTimer()
     }
 
     override fun restart() {
         model.updateStatus(StatusType.DOING)
         PedometerDynamicUtility.reStart(presenter = this)
+        TimerUtility.reStartTimer(presenter = this)
     }
 
     override fun stop() {
         model.updateStatus(StatusType.STOPPED)
         PedometerDynamicUtility.cancel()
+        TimerUtility.cancelTimer()
     }
 
     override fun updatePerSecond() {

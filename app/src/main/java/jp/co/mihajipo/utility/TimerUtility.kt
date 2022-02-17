@@ -39,6 +39,7 @@ object TimerUtility {
             presenter: MihajipoPresenter?
     ) {
         if (isReset) seconds = 0
+        keepRunning.set(true)
         job = coroutineScope.launch {
             delay(REPEAT)
             while (keepRunning.get()) {

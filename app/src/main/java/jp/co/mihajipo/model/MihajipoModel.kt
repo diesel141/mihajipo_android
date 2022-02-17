@@ -29,7 +29,7 @@ class MihajipoModel {
      * 経過時間を更新
      */
     fun updateTimer() {
-        // times.postValue(TimerUtility.getTime()) TODO
+        times.postValue(TimerUtility.getSeconds())
     }
 
     /**
