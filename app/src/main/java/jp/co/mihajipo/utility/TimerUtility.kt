@@ -76,6 +76,7 @@ object TimerUtility {
      */
     fun cancelTimer() {
         stopTimer()
+        seconds = 0
         job?.cancel()
     }
 }

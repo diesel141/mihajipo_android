@@ -38,6 +38,7 @@ object PedometerDynamicUtility {
     }
 
     fun cancel() {
+        steps = 0
         _presenter?.sensorManager?.unregisterListener(sensorListener)
         _presenter = null
     }

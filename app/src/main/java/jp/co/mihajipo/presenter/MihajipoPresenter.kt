@@ -44,6 +44,11 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
         model.updateStatus(StatusType.STOPPED)
         TimerUtility.cancelTimer()
         PedometerDynamicUtility.cancel()
+
+        // リセット後の表示更新
+        updatePerSecond()
+        updatePerThirtySecond()
+        updateForNeed()
     }
 
     override fun updatePerSecond() {
