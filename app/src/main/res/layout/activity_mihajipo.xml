@@ -14,8 +14,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:padding="30dp"
         tools:context=".view.MihajipoActivity">
 
         <TextView
@@ -28,105 +30,166 @@
             android:id="@+id/times"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/default_time" />
+            android:text="@string/default_time"
+            android:textColor="@color/black"
+            android:textSize="100dp" />
 
         <!-- 歩数 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/step" />
 
             <TextView
                 android:id="@+id/steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_steps" />
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/default_steps"
+                android:textColor="@color/black"
+                android:textSize="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_unit_steps" />
+                android:layout_alignParentRight="true"
+                android:text="@string/label_unit_steps"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
         </LinearLayout>
 
         <!-- 時速 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/speed" />
 
             <TextView
                 android:id="@+id/speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_speed" />
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/default_speed"
+                android:textColor="@color/black"
+                android:textSize="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_unit_speed" />
+                android:text="@string/label_unit_speed"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
         </LinearLayout>
 
         <!-- 距離 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/distance" />
 
             <TextView
                 android:id="@+id/distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_distance" />
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/default_distance"
+                android:textColor="@color/black"
+                android:textSize="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_unit_distance" />
+                android:text="@string/label_unit_distance"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/single_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal"
             android:visibility="@{status == status.STOPPED ? View.VISIBLE : View.GONE}">
 
-            <Button
+            <TextView
                 android:id="@+id/start"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_btn_start" />
+                android:layout_height="80dp"
+                android:background="@drawable/button_start"
+                android:gravity="center"
+                android:text="@string/label_btn_start"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/double_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal"
             android:visibility="@{status != status.STOPPED ? View.VISIBLE : View.GONE}">
 
-            <Button
+            <TextView
                 android:id="@+id/pause"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_start"
+                android:gravity="center"
                 android:text="@string/label_btn_pause"
+                android:textColor="@color/white"
+                android:textSize="40dp"
                 android:visibility="@{status == status.DOING ? View.VISIBLE : View.GONE}" />
 
-            <Button
+            <TextView
                 android:id="@+id/restart"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:text="@string/label_btn_restart"
+                android:background="@drawable/button_start"
+                android:gravity="center"
+                android:text="@string/label_btn_start"
+                android:textColor="@color/white"
+                android:textSize="40dp"
                 android:visibility="@{status == status.PAUSED ? View.VISIBLE : View.GONE}" />
 
-            <Button
+            <TextView
                 android:id="@+id/stop"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="@string/label_btn_stop" />
+                android:background="@drawable/button_stop"
+                android:gravity="center"
+                android:text="@string/label_btn_stop"
+                android:textColor="@color/white"
+                android:textSize="40dp" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,14 +1,13 @@
 <resources>
-    <string name="app_name">mihajipo_android</string>
+    <string name="app_name">MIHAJIPO</string>
     <string name="default_time">0:00:00</string>
     <string name="default_steps">0</string>
-    <string name="label_unit_steps">step</string>
+    <string name="label_unit_steps">" step"</string>
     <string name="default_speed">0</string>
-    <string name="label_unit_speed">km/h</string>
+    <string name="label_unit_speed">" km/h"</string>
     <string name="default_distance">0</string>
-    <string name="label_unit_distance">m</string>
-    <string name="label_btn_start">開始</string>
-    <string name="label_btn_pause">一時停止</string>
-    <string name="label_btn_restart">再開</string>
-    <string name="label_btn_stop">停止</string>
+    <string name="label_unit_distance">" m"</string>
+    <string name="label_btn_start">▶</string>
+    <string name="label_btn_pause">Ⅱ</string>
+    <string name="label_btn_stop">■</string>
 </resources>
