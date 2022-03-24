@@ -27,7 +27,7 @@ object TimerUtility {
         // 0埋め
         min = min.padStart(2, '0')
         sec = sec.padStart(2, '0')
-        return "${hour}:${min}:${sec}"
+        return "$hour:$min:$sec"
     }
 
     /**
