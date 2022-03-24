@@ -21,13 +21,13 @@ object TimerUtility {
      */
     fun getSeconds(): String {
         // 時分秒計算
-        var hour = (seconds / 3600).toString()
+        val hour = (seconds / 3600).toString()
         var min = ((seconds % 3600) / 60).toString()
         var sec = (seconds % 60).toString()
         // 0埋め
         min = min.padStart(2, '0')
         sec = sec.padStart(2, '0')
-        return hour + ":" + min + ":" + sec
+        return "${hour}:${min}:${sec}"
     }
 
     /**
