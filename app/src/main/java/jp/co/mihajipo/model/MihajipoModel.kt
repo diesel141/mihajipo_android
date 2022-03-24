@@ -2,6 +2,7 @@ package jp.co.mihajipo.model
 
 import androidx.lifecycle.MutableLiveData
 import jp.co.mihajipo.utility.PedometerDynamicUtility
+import jp.co.mihajipo.utility.TimerUtility
 
 /**
  * MihajipoのModel
@@ -29,7 +30,7 @@ class MihajipoModel {
      * 経過時間を更新
      */
     fun updateTimer() {
-        // times.postValue(TimerUtility.getTime()) TODO
+        times.postValue(TimerUtility.getSeconds())
     }
 
     /**
