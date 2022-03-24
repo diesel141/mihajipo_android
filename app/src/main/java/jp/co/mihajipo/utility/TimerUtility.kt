@@ -20,8 +20,14 @@ object TimerUtility {
      * 経過時間を(x:xx:xx)形式で返却します
      */
     fun getSeconds(): String {
-        // TODO フォーマット
-        return seconds.toString()
+        // 時分秒計算
+        var hour = (seconds / 3600).toString()
+        var min = ((seconds % 3600) / 60).toString()
+        var sec = (seconds % 60).toString()
+        // 0埋め
+        min = min.padStart(2, '0')
+        sec = sec.padStart(2, '0')
+        return hour + ":" + min + ":" + sec
     }
 
     /**
