@@ -8,6 +8,11 @@ interface MIhajipoContract {
          * viewを初期化
          */
         fun initView()
+
+        /**
+         * 位置情報けんげんダイアログを表示
+         */
+        fun showLocationPermissionDialog()
     }
 
     interface Presenter {

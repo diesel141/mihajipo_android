@@ -1,9 +1,11 @@
 package jp.co.mihajipo.presenter
 
 import android.hardware.SensorManager
+import jp.co.mihajipo.MihajipoApplication
 import jp.co.mihajipo.model.MIhajipoContract
 import jp.co.mihajipo.model.MihajipoModel
 import jp.co.mihajipo.model.MihajipoModel.StatusType
+import jp.co.mihajipo.utility.LocationUtility
 import jp.co.mihajipo.utility.PedometerDynamicUtility
 import jp.co.mihajipo.utility.TimerUtility
 
@@ -26,6 +28,9 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
         model.updateStatus(StatusType.DOING)
         TimerUtility.startTimer(presenter = this)
         PedometerDynamicUtility.start(presenter = this)
+        LocationUtility.getsInstance(MihajipoApplication.applicationContext())?.savePlace(
+            LocationUtility.LocationType.START, view
+        )
     }
 
     override fun pause() {

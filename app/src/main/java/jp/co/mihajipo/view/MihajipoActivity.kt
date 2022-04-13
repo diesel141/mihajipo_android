@@ -1,7 +1,11 @@
 package jp.co.mihajipo.view
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.hardware.SensorManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import jp.co.mihajipo.databinding.ActivityMihajipoBinding
 import jp.co.mihajipo.model.MIhajipoContract
 import jp.co.mihajipo.presenter.MihajipoPresenter
@@ -60,5 +64,20 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
         binding.stop.setOnClickListener {
             presenter?.stop()
         }
+    }
+
+    override fun showLocationPermissionDialog() {
+        presenter?.stop()
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                100
+            )
+        }
+        /*
+         TODO 2回「許可しない」を選択した場合、以降のダイアログは表示されない
+         設定を開くか、設定最速するダイアログ表示を追加したい
+        */
     }
 }
