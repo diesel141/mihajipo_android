@@ -1,7 +1,10 @@
 package jp.co.mihajipo.model
 
 import androidx.lifecycle.MutableLiveData
+import jp.co.mihajipo.MihajipoApplication
+import jp.co.mihajipo.utility.LocationUtility
 import jp.co.mihajipo.utility.PedometerDynamicUtility
+import jp.co.mihajipo.utility.SharedPreferencesUtility
 import jp.co.mihajipo.utility.TimerUtility
 
 /**
@@ -52,8 +55,10 @@ class MihajipoModel {
 
     /**
      * 時速を更新
+     *
+     * @param previousLocation 前回位置情報
      */
-    fun updateSpeed() {
+    fun updateSpeed(previousLocation: List<String>) {
         // speed.postValue(SpeedUtility.getSpeed()) TODO
     }
 
@@ -63,10 +68,24 @@ class MihajipoModel {
     fun getDistance(): MutableLiveData<String> = distance
 
     /**
+     * 前回位置情報を返却
+     */
+    fun getPreviousLocation() =
+        SharedPreferencesUtility(MihajipoApplication.applicationContext()).loadCurrentLocation()
+
+    /**
      * 距離を更新
      */
     fun updateDistance() {
         // times.postValue(DistanceUtility.getDistance()) TODO
+    }
+
+    /**
+     * 現在位置情報を更新保存
+     */
+    fun updateCurrentLocation(view: MIhajipoContract.View) {
+        LocationUtility.getsInstance(MihajipoApplication.applicationContext())
+            ?.saveLocation(view = view)
     }
 
     /**

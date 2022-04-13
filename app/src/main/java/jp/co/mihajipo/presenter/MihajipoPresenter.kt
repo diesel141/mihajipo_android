@@ -28,7 +28,7 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
         model.updateStatus(StatusType.DOING)
         TimerUtility.startTimer(presenter = this)
         PedometerDynamicUtility.start(presenter = this)
-        LocationUtility.getsInstance(MihajipoApplication.applicationContext())?.savePlace(
+        LocationUtility.getsInstance(MihajipoApplication.applicationContext())?.saveLocation(
             LocationUtility.LocationType.START, view
         )
     }
@@ -62,7 +62,11 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
 
     override fun updatePerThirtySecond() {
         model.updateTimer()
-        model.updateSpeed()
+
+        val previousLocation = model.getPreviousLocation()
+        model.updateCurrentLocation(view)
+
+        model.updateSpeed(previousLocation)
         model.updateDistance()
     }
 

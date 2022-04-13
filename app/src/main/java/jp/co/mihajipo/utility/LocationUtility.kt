@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import jp.co.mihajipo.model.MIhajipoContract
@@ -30,6 +31,7 @@ class LocationUtility private constructor(private val context: Context) {
     private var provider: String? = null
     private var time: Long = 0
     private var onProcessCallbackListener: OnProcessCallbackListener? = null
+    private val handler = Handler()
 
     /**
      * 位置情報取得後のプロセスコールバックリスナー
@@ -63,20 +65,24 @@ class LocationUtility private constructor(private val context: Context) {
      * @param locationType 位置情報タイプ
      * @param view 参照View
      */
-    fun savePlace(locationType: LocationType = LocationType.CURRENT, view: MIhajipoContract.View) {
+    fun saveLocation(
+        locationType: LocationType = LocationType.CURRENT,
+        view: MIhajipoContract.View
+    ) {
         onProcessCallbackListener = object : OnProcessCallbackListener {
             override fun onSuccessLocation(latitude: Double, longitude: Double) {
                 when (locationType) {
                     LocationType.START ->
-                        SharedPreferencesUtil(context).saveStartPlace(latitude, longitude)
+                        SharedPreferencesUtility(context).saveStartLocation(latitude, longitude)
                     else ->
-                        SharedPreferencesUtil(context).saveCurrentPlace(latitude, longitude)
+                        SharedPreferencesUtility(context).saveCurrentLocation(latitude, longitude)
                 }
-                Toast.makeText(
-                    context,
-                    "位置情報取得完了：latitude＝$latitude／longitude＝$longitude",
-                    Toast.LENGTH_LONG
-                ).show()
+                Log.d("★", "★")
+//                Toast.makeText(
+//                    context,
+//                    "位置情報取得完了：latitude＝$latitude／longitude＝$longitude",
+//                    Toast.LENGTH_LONG
+//                ).show()
             }
 
             override fun onFailedLocation() {
@@ -140,7 +146,7 @@ class LocationUtility private constructor(private val context: Context) {
         }
         locationTimer = Timer(true)
         time = 0L
-        val handler = Handler()
+
         locationTimer?.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 handler.post {
