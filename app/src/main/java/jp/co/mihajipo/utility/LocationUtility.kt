@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -31,7 +32,7 @@ class LocationUtility private constructor(private val context: Context) {
     private var provider: String? = null
     private var time: Long = 0
     private var onProcessCallbackListener: OnProcessCallbackListener? = null
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
 
     /**
      * 位置情報取得後のプロセスコールバックリスナー
@@ -77,12 +78,6 @@ class LocationUtility private constructor(private val context: Context) {
                     else ->
                         SharedPreferencesUtility(context).saveCurrentLocation(latitude, longitude)
                 }
-                Log.d("★", "★")
-//                Toast.makeText(
-//                    context,
-//                    "位置情報取得完了：latitude＝$latitude／longitude＝$longitude",
-//                    Toast.LENGTH_LONG
-//                ).show()
             }
 
             override fun onFailedLocation() {
@@ -156,7 +151,7 @@ class LocationUtility private constructor(private val context: Context) {
                         Toast.makeText(context, "現在地を特定できませんでした。", Toast.LENGTH_LONG).show()
                         stopLocationService()
                     }
-                    time = time + 1000L
+                    time += 1000L
                 }
             }
         }, 0L, 1000L)
@@ -171,7 +166,9 @@ class LocationUtility private constructor(private val context: Context) {
             override fun onProviderEnabled(provider: String) {}
             override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         }
-        locationManager?.requestLocationUpdates(provider, 60000, 1f, locationListener)
+        Handler(Looper.getMainLooper()).post {
+            locationManager?.requestLocationUpdates(provider, 60000, 1f, locationListener)
+        }
     }
 
     fun stopLocationService() {

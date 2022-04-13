@@ -46,9 +46,9 @@ object TimerUtility {
             while (keepRunning.get()) {
                 ++seconds
                 if (seconds % THIRTY == 0) {
-                    presenter?.updatePerSecond()
-                } else {
                     presenter?.updatePerThirtySecond()
+                } else {
+                    presenter?.updatePerSecond()
                 }
                 delay(REPEAT)
             }
