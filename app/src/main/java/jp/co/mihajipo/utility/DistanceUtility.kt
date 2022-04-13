@@ -10,9 +10,9 @@ object DistanceUtility {
 
     /**
      * 2地点間の距離を算出する
-     * @args tmpFastLocation 始点location
-     * @args tmpNextLocation 終点location
-     * @return String 2地点間の距離（m）
+     * @param tmpFastLocation 始点location
+     * @param tmpNextLocation 終点location
+     * @return 2地点間の距離（m）
      */
     fun calcBetweenTwoPoints(tmpFastLocation: Location, tmpNextLocation: Location): String {
         val results = FloatArray(1)
@@ -22,8 +22,8 @@ object DistanceUtility {
             tmpNextLocation.latitude,
             tmpNextLocation.longitude,
             results
-        );
-        Log.d("debug", "距離確認：" + (results[0]/100).toString())
-        return (results[0]/100).toString()
+        )
+        Log.d("debug", "距離確認：" + (results[0]).toString())
+        return (results[0]).toString()
     }
 }
