@@ -23,7 +23,7 @@ object DistanceUtility {
             tmpNextLocation.longitude,
             results
         )
-        Log.d("debug", "距離確認：" + (results[0]).toString())
-        return (results[0]).toString()
+        Log.d("debug", "距離確認：" + results[0].toString())
+        return results[0].toString()
     }
 }
