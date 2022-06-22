@@ -68,7 +68,7 @@ class MihajipoModel {
      * 前回位置情報を返却
      */
     fun getPreviousLocation() =
-        SharedPreferencesUtility(MihajipoApplication.applicationContext()).loadCurrentLocation()
+        SharedPreferencesUtility.instance(MihajipoApplication.applicationContext())?.loadCurrentLocation()
 
     /**
      * 距離を更新

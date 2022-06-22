@@ -3,7 +3,7 @@ package jp.co.mihajipo.utility
 import android.content.Context
 import jp.co.mihajipo.extentions.string
 
-class SharedPreferencesUtility(context: Context) {
+class SharedPreferencesUtility private constructor(context: Context) {
 
     private val preferences = context.getSharedPreferences("mihajipo_data", Context.MODE_PRIVATE)
 
@@ -48,5 +48,10 @@ class SharedPreferencesUtility(context: Context) {
 
     companion object {
         const val SEPARATOR = "／"
+        private var instance: SharedPreferencesUtility? = null
+
+        fun instance(context: Context): SharedPreferencesUtility {
+            return instance ?: SharedPreferencesUtility(context).also { instance = it }
+        }
     }
 }
