@@ -72,10 +72,17 @@ class LocationUtility private constructor(private val context: Context) {
         onProcessCallbackListener = object : OnProcessCallbackListener {
             override fun onSuccessLocation(latitude: Double, longitude: Double) {
                 when (locationType) {
-                    LocationType.START ->
-                        SharedPreferencesUtility(context).saveStartLocation(latitude, longitude)
+                    LocationType.START -> {
+                        with(SharedPreferencesUtility.instance(context)) {
+                            saveStartLocation(latitude, longitude)
+                            if (isSetCurrentLocation()) {
+                                saveCurrentLocation(latitude, longitude)
+                            }
+                        }
+                    }
                     else ->
-                        SharedPreferencesUtility(context).saveCurrentLocation(latitude, longitude)
+                        SharedPreferencesUtility.instance(context)
+                            .saveCurrentLocation(latitude, longitude)
                 }
             }
 

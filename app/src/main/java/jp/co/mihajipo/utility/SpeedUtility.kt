@@ -13,7 +13,8 @@ object SpeedUtility {
      * @param previousLocation 前回位置情報
      */
     fun getSpeed(previousLocation: List<String>): String =
-        SharedPreferencesUtility(MihajipoApplication.applicationContext()).loadCurrentLocation()
+        SharedPreferencesUtility.instance(MihajipoApplication.applicationContext())
+            .loadCurrentLocation()
             .let { currentLocation ->
                 DistanceUtility.calcBetweenTwoPoints(
                     previousLocation[0],
