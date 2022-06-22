@@ -2,10 +2,7 @@ package jp.co.mihajipo.model
 
 import androidx.lifecycle.MutableLiveData
 import jp.co.mihajipo.MihajipoApplication
-import jp.co.mihajipo.utility.LocationUtility
-import jp.co.mihajipo.utility.PedometerDynamicUtility
-import jp.co.mihajipo.utility.SharedPreferencesUtility
-import jp.co.mihajipo.utility.TimerUtility
+import jp.co.mihajipo.utility.*
 
 /**
  * MihajipoのModel
@@ -59,7 +56,7 @@ class MihajipoModel {
      * @param previousLocation 前回位置情報
      */
     fun updateSpeed(previousLocation: List<String>) {
-        // speed.postValue(SpeedUtility.getSpeed()) TODO
+        speed.postValue(SpeedUtility.getSpeed(previousLocation))
     }
 
     /**

@@ -11,7 +11,6 @@ import android.location.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import jp.co.mihajipo.model.MIhajipoContract
