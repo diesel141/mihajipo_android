@@ -41,6 +41,11 @@ class SharedPreferencesUtility(context: Context) {
      */
     fun loadCurrentLocation() = currentLocation.split(SEPARATOR)
 
+    /**
+     * 現在位置情報が設定されているかを返す
+     */
+    fun isSetCurrentLocation() = currentLocation.isNullOrEmpty()
+
     companion object {
         const val SEPARATOR = "／"
     }
