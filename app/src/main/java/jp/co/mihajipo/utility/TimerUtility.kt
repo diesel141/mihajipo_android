@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 object TimerUtility {
 
+    const val THIRTY = 30
     private const val REPEAT = 1000L
-    private const val THIRTY = 30
     private val coroutineScope: CoroutineScope = GlobalScope
     private val keepRunning = AtomicBoolean(true)
     private var job: Job? = null
