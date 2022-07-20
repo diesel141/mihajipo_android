@@ -72,9 +72,11 @@ class MihajipoModel {
 
     /**
      * 距離を更新
+     *
+     * @param previousLocation 前回位置情報
      */
-    fun updateDistance() {
-        // times.postValue(DistanceUtility.getDistance()) TODO
+    fun updateDistance(previousLocation: List<String>) {
+        distance.postValue(DistanceUtility.getDistance(previousLocation))
     }
 
     /**

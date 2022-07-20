@@ -67,7 +67,7 @@ open class MihajipoPresenter(_view: MIhajipoContract.View) :
         model.updateCurrentLocation(view)
 
         model.updateSpeed(previousLocation)
-        model.updateDistance()
+        model.updateDistance(previousLocation)
     }
 
     override fun updateForNeed() {

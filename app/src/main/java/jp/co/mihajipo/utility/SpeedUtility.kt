@@ -16,13 +16,13 @@ object SpeedUtility {
         SharedPreferencesUtility.instance(MihajipoApplication.applicationContext())
             .loadCurrentLocation()
             .let { currentLocation ->
-                DistanceUtility.calcBetweenTwoPoints(
+                    DistanceUtility.calcBetweenTwoPoints(
                     previousLocation[0],
                     previousLocation[1],
                     currentLocation[0],
                     currentLocation[1]
                 ).let { meters ->
-                    (meters.toFloat() * 2 * 60).toString()
+                    (meters.toFloat() * (60 / TimerUtility.THIRTY) * 60 / 1000).toString()
                 }
             }
 }
