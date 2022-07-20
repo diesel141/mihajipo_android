@@ -13,6 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
         initBinding()
         initPresenter()
         initObserver()
+        showLocationPermissionDialog()
     }
 
     /**
@@ -29,4 +30,9 @@ abstract class BaseActivity : AppCompatActivity() {
      * observerを初期化するIF
      */
     abstract fun initObserver()
+
+    /**
+     * showLocationPermissionDialogを初期化するIF
+     */
+    abstract fun showLocationPermissionDialog()
 }

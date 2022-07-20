@@ -39,7 +39,6 @@ class LocationUtility private constructor(private val context: Context) {
     interface OnProcessCallbackListener {
         fun onSuccessLocation(latitude: Double, longitude: Double)
         fun onFailedLocation()
-        fun onUnauthorized()
     }
 
     /**
@@ -89,10 +88,6 @@ class LocationUtility private constructor(private val context: Context) {
             override fun onFailedLocation() {
                 TODO("Not yet implemented")
             }
-
-            override fun onUnauthorized() {
-                view.showLocationPermissionDialog()
-            }
         }
         startLocationService()
     }
@@ -137,7 +132,6 @@ class LocationUtility private constructor(private val context: Context) {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) !== PackageManager.PERMISSION_GRANTED
         ) {
-            onProcessCallbackListener?.onUnauthorized()
             return
         }
         val lastKnownLocation = locationManager?.getLastKnownLocation(provider)
