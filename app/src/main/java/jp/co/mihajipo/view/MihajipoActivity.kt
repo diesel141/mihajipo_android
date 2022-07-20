@@ -1,6 +1,7 @@
 package jp.co.mihajipo.view
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.hardware.SensorManager
@@ -67,7 +68,6 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
     }
 
     override fun showLocationPermissionDialog() {
-        presenter?.stop()
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                 this,
@@ -75,9 +75,24 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
                 100
             )
         }
-        /*
-         TODO 2回「許可しない」を選択した場合、以降のダイアログは表示されない
-         設定を開くか、設定最速するダイアログ表示を追加したい
-        */
+    }
+
+    override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // パーミッションを持っていない場合(許可が選択されなかった場合)
+        if (grantResults.all { it != PackageManager.PERMISSION_GRANTED }) {
+            AlertDialog.Builder(this)
+                .setTitle("位置情報の許可がありません")
+                .setMessage("アプリケーションの設定から位置情報を許可してください")
+                .setPositiveButton("OK") { dialog, which ->
+                    // アプリケーションを終了
+                    finish()
+                }
+                .show()
+        }
     }
 }
