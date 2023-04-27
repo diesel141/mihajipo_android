@@ -23,6 +23,7 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
             it.lifecycleOwner = this
             setContentView(it.root)
         }
+        initObserver()
     }
 
     override fun initPresenter() {
