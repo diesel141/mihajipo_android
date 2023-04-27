@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.hardware.SensorManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import jp.co.mihajipo.databinding.ActivityMihajipoBinding
@@ -23,6 +24,7 @@ class MihajipoActivity : BaseActivity(), MIhajipoContract.View {
             it.lifecycleOwner = this
             setContentView(it.root)
         }
+        Log.d("★１", "★１")
     }
 
     override fun initPresenter() {
